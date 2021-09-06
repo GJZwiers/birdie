@@ -1,22 +1,22 @@
 import { transcribe } from "./mods/mod.ts";
 
 function javascribe(s: string): string {
-    let transcript = "";
-  
-    for (const c of s) {
-      if (c == "A") {
-        transcript += "U";
-      } else if (c == "T") {
-        transcript += "A";
-      } else if (c == "C") {
-        transcript += "G";
-      } else if (c == "G") {
-        transcript += "C";
-      }
+  let transcript = "";
+
+  for (const c of s) {
+    if (c == "A") {
+      transcript += "U";
+    } else if (c == "T") {
+      transcript += "A";
+    } else if (c == "C") {
+      transcript += "G";
+    } else if (c == "G") {
+      transcript += "C";
     }
-  
-    return transcript;
-  }  
+  }
+
+  return transcript;
+}
 
 function makeRandomDNAString(length: number) {
   let result = "";
