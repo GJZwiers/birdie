@@ -1,3 +1,4 @@
+// deno-lint-ignore-file
 let wasm;
 
 let WASM_VECTOR_LEN = 0;
@@ -93,6 +94,7 @@ function getStringFromWasm0(ptr, len) {
  * when tested with the Performance Web API.
  * @param {string} s
  * @returns {string} */
+
 export function transcribe(s) {
   try {
     const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);

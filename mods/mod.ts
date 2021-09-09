@@ -14,6 +14,7 @@ const dna = await fetch(
 );
 
 await initDna(dna);
+// await initDna(Deno.readFile(new URL("./dna/pkg/dna_bg.wasm", import.meta.url)))
 
 const stringDiff = await fetch(
   new URL("./levenshtein/pkg/wagner_fischer_bg.wasm", import.meta.url).href,
@@ -25,5 +26,6 @@ const stringDiff = await fetch(
 );
 
 await initStringDiff(stringDiff);
+//await initStringDiff(Deno.readFile(new URL("./levenshtein/pkg/wagner_fischer_bg.wasm", import.meta.url)));
 
 export { levenshtein, myers, transcribe };
