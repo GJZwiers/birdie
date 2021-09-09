@@ -1,1 +1,1 @@
-export { transcribe } from "./mods/mod.ts";
+export { levenshtein, myers, transcribe } from "./mods/mod.ts";
