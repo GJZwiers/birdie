@@ -4,28 +4,32 @@ import initStringDiff, {
   myers,
 } from "./levenshtein/pkg/wagner_fischer.js";
 
-const dna = await fetch(
-  new URL("./dna/pkg/dna_bg.wasm", import.meta.url).href,
-  {
-    headers: {
-      "content-type": "application/wasm",
-    },
-  },
-);
+function isFileURL(url: URL): boolean {
+  return url.protocol === "file:";
+}
 
-await initDna(dna);
-// await initDna(Deno.readFile(new URL("./dna/pkg/dna_bg.wasm", import.meta.url)))
+async function getWebAssembly(
+  path: string,
+  // deno-lint-ignore no-explicit-any
+  initFn: { (input: any): Promise<WebAssembly.Exports> },
+) {
+  const wasmUrl = new URL(path, import.meta.url);
 
-const stringDiff = await fetch(
-  new URL("./levenshtein/pkg/wagner_fischer_bg.wasm", import.meta.url).href,
-  {
-    headers: {
-      "content-type": "application/wasm",
-    },
-  },
-);
+  if (isFileURL(wasmUrl)) {
+    await initFn(Deno.readFile(wasmUrl));
+  } else {
+    await initFn(fetch(
+      wasmUrl.href,
+      {
+        headers: {
+          "content-type": "application/wasm",
+        },
+      },
+    ));
+  }
+}
 
-await initStringDiff(stringDiff);
-//await initStringDiff(Deno.readFile(new URL("./levenshtein/pkg/wagner_fischer_bg.wasm", import.meta.url)));
+getWebAssembly("./dna/pkg/dna_bg.wasm", initDna);
+getWebAssembly("./levenshtein/pkg/wagner_fischer_bg.wasm", initStringDiff);
 
 export { levenshtein, myers, transcribe };
