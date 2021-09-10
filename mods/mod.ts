@@ -29,7 +29,7 @@ async function getWebAssembly(
   }
 }
 
-getWebAssembly("./dna/pkg/dna_bg.wasm", initDna);
-getWebAssembly("./levenshtein/pkg/wagner_fischer_bg.wasm", initStringDiff);
+await getWebAssembly("./dna/pkg/dna_bg.wasm", initDna);
+await getWebAssembly("./levenshtein/pkg/wagner_fischer_bg.wasm", initStringDiff);
 
 export { levenshtein, myers, transcribe };
