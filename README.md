@@ -7,27 +7,12 @@ considered unstable and experimental.
 
 ## Features
 
-### Transcription
-
-```ts
-import { transcribe } from "https://deno.land/x/birdie/mod.ts";
-
-const transcript = transcribe("ACGT");
-console.log(transcript); > "UGCA";
-```
-
-Performs DNA to RNA transcription. It uses WebAssembly and performs ~4x faster
-than its pure JavaScript counterpart when benchmarked on a 1 million character
-string. However, the current implementation is for demonstrative purposes only
-(for example, it does not seek promotor sites to start transcription at).
-
 ### String Diff Algorithms
 
-Two options are available to calculate the Levenshtein edit distance for two
-strings:
+To calculate the Levenshtein edit distance between two strings two options are
+available:
 
-- Wagner-Fischer
-- Myers' Algorithm
+- Wagner-Fischer Algorithm
 
 ```ts
 import { levenshtein } from "https://deno.land/x/birdie/mod.ts";
@@ -35,6 +20,8 @@ import { levenshtein } from "https://deno.land/x/birdie/mod.ts";
 const distance = levenshtein("kitten", "sitting");
 console.log(distance); // 3
 ```
+
+- Myers' Algorithm
 
 ```ts
 import { myers } from "https://deno.land/x/birdie/mod.ts";

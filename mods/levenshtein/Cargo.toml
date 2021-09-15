@@ -1,5 +1,5 @@
 [package]
-name = "wagner_fischer"
+name = "levenshtein"
 version = "0.1.0"
 edition = "2018"
 
@@ -15,3 +15,9 @@ js-sys = "0.3"
 libmath = "0.2"
 wasm-bindgen = "0.2"
 web-sys = { version = "0.3", features = ["console"] }
+console_error_panic_hook = "0.1.6"
+
+# `wasm-opt` is on by default in for the release profile, but it can be
+# disabled by setting it to `false`
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = true
