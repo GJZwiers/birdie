@@ -1,0 +1,10 @@
+{
+  "fmt": {
+    "files": {
+      "exclude": [
+        "mods/dna/",
+        "mods/levenshtein/"
+      ]
+    }
+  }
+}
