@@ -1,24 +1,29 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* Calculates the string edit distance between `a` and `b` using
-* the Wagner-Fischer algorithm (Levenshtein distance).
+* Calculates the Hamming distance between `a` and `b`.
+* @param {string} a
+* @param {string} b
+* @returns {BigInt}
+*/
+export function hamming(a: string, b: string): BigInt;
+/**
+* Calculates the Levenshtein distance between `a` and `b` using
+* the Wagner-Fischer algorithm.
 * @param {string} a
 * @param {string} b
 * @returns {number}
 */
 export function levenshtein(a: string, b: string): number;
 /**
-* Calculates the string edit distance between `a` and `b` using
-* Myers' Algorithm (Levenshtein distance). Note that `a` must be 128 characters or fewer in length.
 * @param {string} a
 * @param {string} b
 * @returns {number}
 */
 export function myers_distance(a: string, b: string): number;
 /**
-* Calculates the string edit distance between `a` and `b` using
-* Myers' Algorithm (Levenshtein distance).
+* Calculates the Levenshtein distance between `a` and `b` using
+* Myers' Algorithm.
 *
 * Credits for the original JS implementation go to the `fastest-levenshtein` 
 * contributors. See https://github.com/ka-weihe/fastest-levenshtein
@@ -44,11 +49,13 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly hamming: (a: number, b: number, c: number, d: number, e: number) => void;
   readonly levenshtein: (a: number, b: number, c: number, d: number) => number;
   readonly myers_distance: (a: number, b: number, c: number, d: number) => number;
   readonly myers: (a: number, b: number) => number;
   readonly myers_32: (a: number, b: number) => number;
   readonly myers_x: (a: number, b: number) => number;
+  readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
 }

@@ -1,16 +1,8 @@
-import initDna, { transcribe } from "./dna/pkg/dna.js";
-import initStringDiff, {
-  levenshtein,
-  myers,
-  myers_32,
-  myers_distance,
-} from "./levenshtein/pkg/levenshtein.js";
-
 function isFileURL(url: URL): boolean {
   return url.protocol === "file:";
 }
 
-async function getWebAssembly(
+export async function getWebAssembly(
   path: string,
   // deno-lint-ignore no-explicit-any
   initFn: { (input: any): Promise<WebAssembly.Exports> },
@@ -31,10 +23,4 @@ async function getWebAssembly(
   }
 }
 
-await getWebAssembly("./dna/pkg/dna_bg.wasm", initDna);
-await getWebAssembly(
-  "./levenshtein/pkg/levenshtein_bg.wasm",
-  initStringDiff,
-);
-
-export { levenshtein, myers, myers_32, myers_distance, transcribe };
+export { default as initWasm, hamming, levenshtein, myers } from "./levenshtein/pkg/levenshtein.js";

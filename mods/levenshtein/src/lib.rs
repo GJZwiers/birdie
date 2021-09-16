@@ -1,4 +1,8 @@
-use bio::{alignment::distance::levenshtein as distance, pattern_matching::myers};
+use bio::{
+    alignment::distance::levenshtein as distance,
+    alignment::distance::hamming as hamdist,
+    pattern_matching::myers
+};
 use js_sys::{ArrayBuffer, JsString, Uint32Array};
 use math::round::ceil;
 use std::{cmp::min, convert::TryInto};
@@ -12,15 +16,22 @@ fn my_init_function() {
     panic::set_hook(Box::new(console_error_panic_hook::hook));
 }
 
-/// Calculates the string edit distance between `a` and `b` using
-/// the Wagner-Fischer algorithm (Levenshtein distance).
-#[wasm_bindgen]
+/// Calculates the Hamming distance between `a` and `b`.
+#[wasm_bindgen(method)]
+pub fn hamming(a: &str, b: &str) -> u64 {
+    if a.len() != b.len() {
+        panic!("Error: strings need to be of equal length to calculate Hamming distance");
+    }
+    hamdist(a.as_bytes(), b.as_bytes())
+}
+
+/// Calculates the Levenshtein distance between `a` and `b` using
+/// the Wagner-Fischer algorithm.
+#[wasm_bindgen(method)]
 pub fn levenshtein(a: &str, b: &str) -> u32 {
     distance(a.as_bytes(), b.as_bytes())
 }
 
-/// Calculates the string edit distance between `a` and `b` using
-/// Myers' Algorithm (Levenshtein distance). Note that `a` must be 128 characters or fewer in length.
 #[wasm_bindgen(method)]
 pub fn myers_distance(a: &str, b: &str) -> usize {
     // myers::long::Myers
@@ -28,8 +39,8 @@ pub fn myers_distance(a: &str, b: &str) -> usize {
     myers.distance(b.as_bytes())
 }
 
-/// Calculates the string edit distance between `a` and `b` using
-/// Myers' Algorithm (Levenshtein distance).
+/// Calculates the Levenshtein distance between `a` and `b` using
+/// Myers' Algorithm.
 ///
 /// Credits for the original JS implementation go to the `fastest-levenshtein` 
 /// contributors. See https://github.com/ka-weihe/fastest-levenshtein

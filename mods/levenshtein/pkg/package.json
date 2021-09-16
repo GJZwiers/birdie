@@ -1,0 +1,12 @@
+{
+  "name": "levenshtein",
+  "version": "0.1.0",
+  "files": [
+    "levenshtein_bg.wasm",
+    "levenshtein.js",
+    "levenshtein.d.ts"
+  ],
+  "module": "levenshtein.js",
+  "types": "levenshtein.d.ts",
+  "sideEffects": false
+}

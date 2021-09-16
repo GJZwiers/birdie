@@ -91,9 +91,46 @@ function passStringToWasm0(arg, malloc, realloc) {
     WASM_VECTOR_LEN = offset;
     return ptr;
 }
+
+let cachegetInt32Memory0 = null;
+function getInt32Memory0() {
+    if (cachegetInt32Memory0 === null || cachegetInt32Memory0.buffer !== wasm.memory.buffer) {
+        cachegetInt32Memory0 = new Int32Array(wasm.memory.buffer);
+    }
+    return cachegetInt32Memory0;
+}
+
+const u32CvtShim = new Uint32Array(2);
+
+const uint64CvtShim = new BigUint64Array(u32CvtShim.buffer);
 /**
-* Calculates the string edit distance between `a` and `b` using
-* the Wagner-Fischer algorithm (Levenshtein distance).
+* Calculates the Hamming distance between `a` and `b`.
+* @param {string} a
+* @param {string} b
+* @returns {BigInt}
+*/
+export function hamming(a, b) {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        var ptr0 = passStringToWasm0(a, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        var len0 = WASM_VECTOR_LEN;
+        var ptr1 = passStringToWasm0(b, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        var len1 = WASM_VECTOR_LEN;
+        wasm.hamming(retptr, ptr0, len0, ptr1, len1);
+        var r0 = getInt32Memory0()[retptr / 4 + 0];
+        var r1 = getInt32Memory0()[retptr / 4 + 1];
+        u32CvtShim[0] = r0;
+        u32CvtShim[1] = r1;
+        const n2 = uint64CvtShim[0];
+        return n2;
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+    }
+}
+
+/**
+* Calculates the Levenshtein distance between `a` and `b` using
+* the Wagner-Fischer algorithm.
 * @param {string} a
 * @param {string} b
 * @returns {number}
@@ -108,8 +145,6 @@ export function levenshtein(a, b) {
 }
 
 /**
-* Calculates the string edit distance between `a` and `b` using
-* Myers' Algorithm (Levenshtein distance). Note that `a` must be 128 characters or fewer in length.
 * @param {string} a
 * @param {string} b
 * @returns {number}
@@ -132,8 +167,8 @@ function addHeapObject(obj) {
     return idx;
 }
 /**
-* Calculates the string edit distance between `a` and `b` using
-* Myers' Algorithm (Levenshtein distance).
+* Calculates the Levenshtein distance between `a` and `b` using
+* Myers' Algorithm.
 *
 * Credits for the original JS implementation go to the `fastest-levenshtein`
 * contributors. See https://github.com/ka-weihe/fastest-levenshtein
