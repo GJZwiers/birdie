@@ -1,0 +1,19 @@
+name: build
+
+on:
+  push: 
+  pull_request:
+    types: [ opened, edited, reopened ]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: setup Actions
+        uses: actions/checkout@v2
+      - name: setup Deno
+        uses: denolib/setup-deno@v2
+        with:
+          deno-version: v1.x
+      - name: lint
+        run: deno lint --config deno.json

@@ -7,5 +7,14 @@
         "./sequence/"
       ]
     }
+  },
+  "lint": {
+    "files": {
+      "exclude": [
+        "./dna/",
+        "./distance/",
+        "./sequence/"
+      ]
+    }
   }
 }
