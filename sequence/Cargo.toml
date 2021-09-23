@@ -1,0 +1,18 @@
+[package]
+name = "sequence"
+version = "0.1.0"
+edition = "2018"
+description = "Functions to perform DNA sequence analysis"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+bio = "0.37"
+# need to enable js feature to support wasm32-unknown-unknown target
+getrandom = { version = "0.2", features = ["js"] }
+wasm-bindgen = "0.2"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = true

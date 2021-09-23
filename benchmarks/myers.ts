@@ -5,7 +5,10 @@ import {
   runBenchmarks,
 } from "https://deno.land/std@0.106.0/testing/bench.ts";
 
-import init, { levenshtein, myers } from "../mods/levenshtein/pkg/levenshtein.js";
+import init, {
+  levenshtein,
+  myers,
+} from "../mods/levenshtein/pkg/levenshtein.js";
 
 await init(Deno.readFile("./mods/levenshtein/pkg/levenshtein_bg.wasm"));
 
@@ -24,27 +27,27 @@ await init(Deno.readFile("./mods/levenshtein/pkg/levenshtein_bg.wasm"));
 // console.log("myers(wasm): " + (t1 - t0) + "ms");
 
 bench({
-    name: "runs100ForMyersJS",
-    runs: 100,
-    func(bb): void {
-        bb.start();
-        const a = makeRandomDNAString(1024);
-        const b = makeRandomDNAString(1024);
-        distance(a, b);
-        bb.stop();
-    }
-  });
+  name: "runs100ForMyersJS",
+  runs: 100,
+  func(bb): void {
+    bb.start();
+    const a = makeRandomDNAString(1024);
+    const b = makeRandomDNAString(1024);
+    distance(a, b);
+    bb.stop();
+  },
+});
 
 bench({
-    name: "runs100ForMyers",
-    runs: 100,
-    func(bb): void {
-        bb.start();
-        const a = makeRandomDNAString(1024);
-        const b = makeRandomDNAString(1024);
-        myers(a, b);
-        bb.stop();
-    }
-  });
+  name: "runs100ForMyers",
+  runs: 100,
+  func(bb): void {
+    bb.start();
+    const a = makeRandomDNAString(1024);
+    const b = makeRandomDNAString(1024);
+    myers(a, b);
+    bb.stop();
+  },
+});
 
 runBenchmarks();

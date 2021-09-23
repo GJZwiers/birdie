@@ -1,1 +1,2 @@
-export { initWasm, levenshtein, myers, hamming } from "./mods/mod.ts";
+export * as sequence from "./sequence/mod.ts";
+export * as distance from "./distance/mod.ts";

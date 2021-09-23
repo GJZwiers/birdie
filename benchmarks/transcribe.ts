@@ -43,4 +43,4 @@ javascribe(a);
 const tt1 = performance.now();
 
 console.log("wasm: " + (t1 - t0) + "ms");
-console.log("js: " +(tt1 - tt0) + "ms");
+console.log("js: " + (tt1 - tt0) + "ms");

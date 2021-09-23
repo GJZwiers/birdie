@@ -22,5 +22,3 @@ export async function getWebAssembly(
     ));
   }
 }
-
-export { default as initWasm, hamming, levenshtein, myers } from "./levenshtein/pkg/levenshtein.js";

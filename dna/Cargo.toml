@@ -2,7 +2,7 @@
 name = "dna"
 version = "0.1.0"
 edition = "2018"
-description = "A utility that takes a DNA string and transcribes it to RNA"
+description = "General utilities for working with DNA and RNA strings"
 license = "MIT/Apache-2.0"
 repository = "https://github.com/GJZwiers/birdie"
 
