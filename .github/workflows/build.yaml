@@ -1,19 +1,26 @@
 name: build
 
-on:
-  push: 
-  pull_request:
-    types: [ opened, edited, reopened ]
+on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest ]
     steps:
+      - name: Configure line-endings for Windows builds
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          git config --system core.autocrlf false
+          git config --system core.eol lf
       - name: setup Actions
         uses: actions/checkout@v2
       - name: setup Deno
         uses: denoland/setup-deno@v1.0.0
         with:
           deno-version: v1.x
+      - name: check format
+        run: deno fmt --check --config deno.json
       - name: lint
         run: deno lint --config deno.json
