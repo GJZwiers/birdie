@@ -1,4 +1,3 @@
-// deno-lint-ignore-file
 let wasm;
 
 let WASM_VECTOR_LEN = 0;
@@ -93,8 +92,8 @@ function getStringFromWasm0(ptr, len) {
  * Uses WebAssembly and computes approx. 4x faster for 1 mil chars than its JavaScript counterpart
  * when tested with the Performance Web API.
  * @param {string} s
- * @returns {string} */
-
+ * @returns {string}
+ */
 export function transcribe(s) {
   try {
     const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);

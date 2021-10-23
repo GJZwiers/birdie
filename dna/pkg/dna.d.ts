@@ -5,7 +5,8 @@
  * Uses WebAssembly and computes approx. 4x faster for 1 mil chars than its JavaScript counterpart
  * when tested with the Performance Web API.
  * @param {string} s
- * @returns {string} */
+ * @returns {string}
+ */
 export function transcribe(s: string): string;
 
 export type InitInput =
@@ -30,7 +31,8 @@ export interface InitOutput {
  *
  * @param {InitInput | Promise<InitInput>} module_or_path
  *
- * @returns {Promise<InitOutput>} */
+ * @returns {Promise<InitOutput>}
+ */
 export default function init(
   module_or_path?: InitInput | Promise<InitInput>,
 ): Promise<InitOutput>;

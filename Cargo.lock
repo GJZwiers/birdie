@@ -196,6 +196,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "distance"
+version = "0.1.0"
+dependencies = [
+ "bio",
+ "console_error_panic_hook",
+ "getrandom",
+ "js-sys",
+ "libmath",
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
+name = "dna"
+version = "0.1.0"
+dependencies = [
+ "wasm-bindgen",
+]
+
+[[package]]
 name = "either"
 version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -345,9 +365,9 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "libc"
-version = "0.2.104"
+version = "0.2.105"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7b2f96d100e1cf1929e7719b7edb3b90ab5298072638fccd77be9ce942ecdfce"
+checksum = "869d572136620d55835903746bcb5cdc54cb2851fd0aeec53220b4bb65ef3013"
 
 [[package]]
 name = "libm"
@@ -508,12 +528,8 @@ name = "pattern_matching"
 version = "0.1.0"
 dependencies = [
  "bio",
- "console_error_panic_hook",
  "getrandom",
- "js-sys",
- "libmath",
  "wasm-bindgen",
- "web-sys",
 ]
 
 [[package]]
@@ -720,6 +736,15 @@ name = "semver"
 version = "0.1.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d4f410fedcf71af0345d7607d246e7ad15faaadd49d240ee3b24e5dc21a820ac"
+
+[[package]]
+name = "sequence"
+version = "0.1.0"
+dependencies = [
+ "bio",
+ "getrandom",
+ "wasm-bindgen",
+]
 
 [[package]]
 name = "serde"

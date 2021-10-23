@@ -1,0 +1,8 @@
+[workspace]
+
+members = [
+    "distance",
+    "dna",
+    "pattern_matching",
+    "sequence",
+]
