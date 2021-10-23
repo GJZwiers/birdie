@@ -12,7 +12,7 @@ jobs:
       - name: setup Actions
         uses: actions/checkout@v2
       - name: setup Deno
-        uses: denolib/setup-deno@v2
+        uses: denoland/setup-deno@v1.0.0
         with:
           deno-version: v1.x
       - name: lint
