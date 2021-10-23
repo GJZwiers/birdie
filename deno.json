@@ -4,7 +4,8 @@
       "exclude": [
         "./dna/",
         "./distance/",
-        "./sequence/"
+        "./sequence/",
+        "./pattern_matching/"
       ]
     }
   },
@@ -13,7 +14,8 @@
       "exclude": [
         "./dna/",
         "./distance/",
-        "./sequence/"
+        "./sequence/",
+        "./pattern_matching/"
       ]
     }
   }

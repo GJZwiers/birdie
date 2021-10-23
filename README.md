@@ -46,8 +46,6 @@ console.log(myersDistance); // 3
 
 ### Sequence Analysis
 
-Import and initialize the WebAssembly module:
-
 ```ts
 import * as sequence from "https://deno.land/x/birdie/sequence/mod.ts";
 
@@ -60,6 +58,22 @@ console.log(gcRatio); // 0.25
 const gc3Ratio = sequence.gc3Content("GATATACA");
 
 console.log(gc3Ratio); // 0.67
+```
+
+### Pattern Matching
+
+- shift_and
+
+```ts
+import * as patternMatching from "https://deno.land/x/birdie/pattern_matching/mod.ts";
+
+await patternMatching.initWasm();
+
+const pattern = "AAAA";
+const text = "ACGGCTAGAAAAGGCTAG";
+
+const patternStartingPosition = patternMatching.shiftAnd(pattern, text);
+console.log(patternStartingPosition); // 8
 ```
 
 ## Contributing
