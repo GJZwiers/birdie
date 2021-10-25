@@ -1,21 +1,30 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* Find all matches of pattern in the given text. Matches are returned
-* as an iterator over start positions.
+* ShiftAnd algorithm for pattern matching. Patterns may contain at most 64 symbols.
+* Complexity: O(n) with text length n.
 * @param {string} pattern
 * @param {string} text
 * @returns {number}
 */
 export function shift_and(pattern: string, text: string): number;
+/**
+* @param {string} pattern
+* @param {string} text
+* @returns {Uint32Array}
+*/
+export function kmp(pattern: string, text: string): Uint32Array;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly shift_and: (a: number, b: number, c: number, d: number) => number;
+  readonly kmp: (a: number, b: number, c: number, d: number, e: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
+  readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
+  readonly __wbindgen_free: (a: number, b: number) => void;
 }
 
 /**

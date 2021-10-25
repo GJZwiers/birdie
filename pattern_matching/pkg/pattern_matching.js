@@ -72,8 +72,8 @@ function passStringToWasm0(arg, malloc, realloc) {
     return ptr;
 }
 /**
-* Find all matches of pattern in the given text. Matches are returned
-* as an iterator over start positions.
+* ShiftAnd algorithm for pattern matching. Patterns may contain at most 64 symbols.
+* Complexity: O(n) with text length n.
 * @param {string} pattern
 * @param {string} text
 * @returns {number}
@@ -85,6 +85,48 @@ export function shift_and(pattern, text) {
     var len1 = WASM_VECTOR_LEN;
     var ret = wasm.shift_and(ptr0, len0, ptr1, len1);
     return ret >>> 0;
+}
+
+let cachegetInt32Memory0 = null;
+function getInt32Memory0() {
+    if (cachegetInt32Memory0 === null || cachegetInt32Memory0.buffer !== wasm.memory.buffer) {
+        cachegetInt32Memory0 = new Int32Array(wasm.memory.buffer);
+    }
+    return cachegetInt32Memory0;
+}
+
+let cachegetUint32Memory0 = null;
+function getUint32Memory0() {
+    if (cachegetUint32Memory0 === null || cachegetUint32Memory0.buffer !== wasm.memory.buffer) {
+        cachegetUint32Memory0 = new Uint32Array(wasm.memory.buffer);
+    }
+    return cachegetUint32Memory0;
+}
+
+function getArrayU32FromWasm0(ptr, len) {
+    return getUint32Memory0().subarray(ptr / 4, ptr / 4 + len);
+}
+/**
+* @param {string} pattern
+* @param {string} text
+* @returns {Uint32Array}
+*/
+export function kmp(pattern, text) {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        var ptr0 = passStringToWasm0(pattern, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        var len0 = WASM_VECTOR_LEN;
+        var ptr1 = passStringToWasm0(text, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        var len1 = WASM_VECTOR_LEN;
+        wasm.kmp(retptr, ptr0, len0, ptr1, len1);
+        var r0 = getInt32Memory0()[retptr / 4 + 0];
+        var r1 = getInt32Memory0()[retptr / 4 + 1];
+        var v2 = getArrayU32FromWasm0(r0, r1).slice();
+        wasm.__wbindgen_free(r0, r1 * 4);
+        return v2;
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+    }
 }
 
 async function load(module, imports) {
