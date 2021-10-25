@@ -9,8 +9,9 @@ pub fn shift_and(pattern: &str, text: &str) -> usize {
     let shiftand = shift_and::ShiftAnd::new(pattern.as_bytes());
     return shiftand.find_all(text.as_bytes()).next().unwrap();
 }
-// Algorithm of Knuth, Morris and Pratt
-#[wasm_bindgen]
+
+/// Algorithm of Knuth, Morris and Pratt.
+#[wasm_bindgen(method)]
 pub fn kmp(pattern: &str, text: &str) -> Vec<usize> {
     let kmp = kmp::KMP::new(pattern.as_bytes());
     let occ: Vec<usize> = kmp.find_all(text.as_bytes()).collect();

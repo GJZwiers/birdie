@@ -4,3 +4,4 @@ coverage/
 cov/
 lcov/
 target/
+test.ts

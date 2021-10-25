@@ -9,6 +9,7 @@
 */
 export function shift_and(pattern: string, text: string): number;
 /**
+* Algorithm of Knuth, Morris and Pratt.
 * @param {string} pattern
 * @param {string} text
 * @returns {Uint32Array}

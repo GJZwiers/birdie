@@ -107,6 +107,7 @@ function getArrayU32FromWasm0(ptr, len) {
     return getUint32Memory0().subarray(ptr / 4, ptr / 4 + len);
 }
 /**
+* Algorithm of Knuth, Morris and Pratt.
 * @param {string} pattern
 * @param {string} text
 * @returns {Uint32Array}
