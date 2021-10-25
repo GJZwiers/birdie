@@ -1,5 +1,5 @@
 export {
-    default as initWasm,
-    shift_and as shiftAnd,
-    kmp
-  } from "./pkg/pattern_matching.js";
+  default as initWasm,
+  kmp,
+  shift_and as shiftAnd,
+} from "./pkg/pattern_matching.js";

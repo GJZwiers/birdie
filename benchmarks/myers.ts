@@ -5,12 +5,9 @@ import {
   runBenchmarks,
 } from "https://deno.land/std@0.106.0/testing/bench.ts";
 
-import init, {
-  levenshtein,
-  myers,
-} from "../mods/levenshtein/pkg/levenshtein.js";
+import init, { levenshtein, myers } from "../distance/pkg/distance.js";
 
-await init(Deno.readFile("./mods/levenshtein/pkg/levenshtein_bg.wasm"));
+await init(Deno.readFile("./mods/levenshtein/pkg/distance_bg.wasm"));
 
 // const a = makeRandomDNAString(128);
 // const b = makeRandomDNAString(128);
