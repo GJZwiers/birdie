@@ -8,9 +8,9 @@ import {
 import init, {
   levenshtein,
   myers,
-} from "../mods/levenshtein/pkg/levenshtein.js";
+} from "../distance/pkg/distance.js";
 
-await init(Deno.readFile("./mods/levenshtein/pkg/levenshtein_bg.wasm"));
+await init(Deno.readFile("./mods/levenshtein/pkg/distance_bg.wasm"));
 
 // const a = makeRandomDNAString(128);
 // const b = makeRandomDNAString(128);
