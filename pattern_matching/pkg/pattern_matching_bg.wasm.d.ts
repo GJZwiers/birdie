@@ -3,6 +3,9 @@
 export const memory: WebAssembly.Memory;
 export function shift_and(a: number, b: number, c: number, d: number): number;
 export function kmp(a: number, b: number, c: number, d: number, e: number): void;
+export function horspool(a: number, b: number, c: number, d: number, e: number): void;
+export function bom(a: number, b: number, c: number, d: number, e: number): void;
+export function bndm(a: number, b: number, c: number, d: number, e: number): void;
 export function __wbindgen_malloc(a: number): number;
 export function __wbindgen_realloc(a: number, b: number, c: number): number;
 export function __wbindgen_add_to_stack_pointer(a: number): number;
