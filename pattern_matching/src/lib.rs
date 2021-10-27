@@ -1,5 +1,4 @@
-use bio::pattern_matching::{shift_and, kmp};
-// use bio::pattern_matching::pssm::{DNAMotif, Motif};
+use bio::pattern_matching::{bndm, bom::BOM, horspool::Horspool, kmp, shift_and};
 use wasm_bindgen::prelude::wasm_bindgen;
 
 /// ShiftAnd algorithm for pattern matching. Patterns may contain at most 64 symbols.
@@ -7,7 +6,8 @@ use wasm_bindgen::prelude::wasm_bindgen;
 #[wasm_bindgen(method)]
 pub fn shift_and(pattern: &str, text: &str) -> usize {
     let shiftand = shift_and::ShiftAnd::new(pattern.as_bytes());
-    return shiftand.find_all(text.as_bytes()).next().unwrap();
+    let occ = shiftand.find_all(text.as_bytes()).next().unwrap();
+    return occ;
 }
 
 /// Algorithm of Knuth, Morris and Pratt.
@@ -18,11 +18,26 @@ pub fn kmp(pattern: &str, text: &str) -> Vec<usize> {
     return occ;
 }
 
-// pub fn motif(sequences: Vec<&str>) {
-//     let pssm = DNAMotif::from_seqs(
-//         vec![ b"AAAA".to_vec(), b"AATA".to_vec(), b"AAGA".to_vec(), b"AAAA".to_vec(), ].as_ref(),
-//         None
-//     ).unwrap();
-//     let start_pos = pssm.score(b"CCCCCAATA").unwrap().loc;
-//     println!("motif found at position {}", start_pos);
-// }
+/// Algorithm of Horspool. Window-based, similar to but faster than Boyer-Moore.
+#[wasm_bindgen(method)]
+pub fn horspool(pattern: &str, text: &str) -> Vec<usize> {
+    let horspool = Horspool::new(pattern.as_bytes());
+    let occ: Vec<usize> = horspool.find_all(text.as_bytes()).collect();
+    return occ; // assert_eq!(occ, [8, 25]);
+}
+
+/// Backward oracle matching algorithm.
+#[wasm_bindgen(method)]
+pub fn bom(pattern: &str, text: &str) -> Vec<usize> {
+    let bom = BOM::new(pattern.as_bytes());
+    let occ: Vec<usize> = bom.find_all(text.as_bytes()).collect();
+    return occ; // assert_eq!(occ, [8, 25]);
+}
+
+/// Backward nondeterministic DAWG matching (BNDM).
+#[wasm_bindgen(method)]
+pub fn bndm(pattern: &str, text: &str) -> Vec<usize> {
+    let bndm = bndm::BNDM::new(pattern.as_bytes());
+    let occ: Vec<usize> = bndm.find_all(text.as_bytes()).collect();
+    return occ;
+}
