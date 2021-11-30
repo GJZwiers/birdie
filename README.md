@@ -4,7 +4,7 @@
 ![GitHub](https://img.shields.io/github/license/GJZwiers/birdie)
 
 <p align="center">
-<img src="./birdie.png" width="350">
+<img src="./docs/birdie.png" width="350">
 </p>
 
 `birdie` is a bioinformatics module for Deno that aims to evolve existing
