@@ -7,12 +7,15 @@
 [![build](https://github.com/GJZwiers/birdie/actions/workflows/build.yaml/badge.svg)](https://github.com/GJZwiers/birdie/actions/workflows/build.yaml)
 ![GitHub](https://img.shields.io/github/license/GJZwiers/birdie)
 
-`birdie` is a Deno module for bioinformatical analysis with the aim of evolving existing JavaScript code to WebAssembly-powered variants with improved computational performance. At the moment the project is in very early stages of development and all features are
-considered unstable and experimental.
+`birdie` is a Deno module for bioinformatical analysis with the aim of evolving
+existing JavaScript code to WebAssembly-powered variants with improved
+computational performance. At the moment the project is in very early stages of
+development and all features are considered unstable and experimental.
 
 ## Installation
 
-`birdie` provides modules that can be imported into a JavaScript or Typescript application with a URL:
+`birdie` provides modules that can be imported into a JavaScript or Typescript
+application with a URL:
 
 ```ts
 import * as pm from "https://deno.land/x/birdie/pattern_matching/mod.ts";
@@ -24,7 +27,9 @@ The WebAssembly needs to be initialized before use with the `initWasm` method:
 await pm.initWasm();
 ```
 
-As of right now, WebAssembly files are not locally cached along with JS/TS files in Deno, so you must pass `--allow-net=deno.land` in order to successfully run `birdie`, because the WebAssembly needs to be fetched from `deno.land/x`.
+As of right now, WebAssembly files are not locally cached along with JS/TS files
+in Deno, so you must pass `--allow-net=deno.land` in order to successfully run
+`birdie`, because the WebAssembly needs to be fetched from `deno.land/x`.
 
 ## Features
 
