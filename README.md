@@ -3,6 +3,10 @@
 [![build](https://github.com/GJZwiers/birdie/actions/workflows/build.yaml/badge.svg)](https://github.com/GJZwiers/birdie/actions/workflows/build.yaml)
 ![GitHub](https://img.shields.io/github/license/GJZwiers/birdie)
 
+<p align="center">
+<img src="./docs/birdie.png" width="350">
+</p>
+
 `birdie` is a bioinformatics module for Deno that aims to evolve existing
 JavaScript code to WebAssembly-powered variants for increased performance.
 Currently it's in very early stages of development and all features are

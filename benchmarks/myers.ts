@@ -5,7 +5,7 @@ import {
   runBenchmarks,
 } from "https://deno.land/std@0.106.0/testing/bench.ts";
 
-import init, { levenshtein, myers } from "../distance/pkg/distance.js";
+import init, { myers } from "../distance/pkg/distance.js";
 
 await init(Deno.readFile("./mods/levenshtein/pkg/distance_bg.wasm"));
 
