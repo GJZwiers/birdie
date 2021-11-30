@@ -10,7 +10,7 @@ jobs:
         os: [ubuntu-20.04, macos-11, windows-2019]
     steps:
       - name: Configure line-endings for Windows builds
-        if: ${{ matrix.os == 'windows-latest' }}
+        if: ${{ matrix.os == 'windows-2019' }}
         run: |
           git config --system core.autocrlf false
           git config --system core.eol lf
