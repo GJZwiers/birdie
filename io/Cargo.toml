@@ -1,0 +1,16 @@
+[package]
+name = "io"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+seq_io = "0.3.1"
+getrandom = { version = "0.2", features = ["js"] }
+wasm-bindgen = "0.2"
+console_error_panic_hook = "0.1.6"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = true

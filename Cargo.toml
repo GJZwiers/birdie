@@ -5,4 +5,5 @@ members = [
     "dna",
     "pattern_matching",
     "sequence",
+    "io",
 ]
