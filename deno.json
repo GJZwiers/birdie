@@ -4,6 +4,7 @@
       "exclude": [
         "./target",
         "./dna/",
+        "./io",
         "./distance/",
         "./sequence/",
         "./pattern_matching/"
@@ -15,6 +16,7 @@
       "exclude": [
         "./target",
         "./dna/",
+        "./io",
         "./distance/",
         "./sequence/",
         "./pattern_matching/"

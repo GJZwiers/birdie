@@ -26,7 +26,7 @@ pub fn horspool(pattern: &str, text: &str) -> Vec<usize> {
     return occ; // assert_eq!(occ, [8, 25]);
 }
 
-/// Backward oracle matching algorithm.
+/// Backward Oracle Matching algorithm.
 #[wasm_bindgen(method)]
 pub fn bom(pattern: &str, text: &str) -> Vec<usize> {
     let bom = BOM::new(pattern.as_bytes());
@@ -34,7 +34,7 @@ pub fn bom(pattern: &str, text: &str) -> Vec<usize> {
     return occ; // assert_eq!(occ, [8, 25]);
 }
 
-/// Backward nondeterministic DAWG matching (BNDM).
+/// Backward Nondeterministic DAWG Matching (BNDM) algorithm.
 #[wasm_bindgen(method)]
 pub fn bndm(pattern: &str, text: &str) -> Vec<usize> {
     let bndm = bndm::BNDM::new(pattern.as_bytes());

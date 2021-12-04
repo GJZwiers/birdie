@@ -22,3 +22,7 @@ jobs:
         run: deno fmt --check --config deno.json
       - name: lint
         run: deno lint --config deno.json
+      - name: unit tests
+        run: deno test --allow-read --coverage=cov
+      - name: show coverage
+        run: deno coverage cov
