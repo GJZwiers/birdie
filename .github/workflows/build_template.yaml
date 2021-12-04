@@ -1,0 +1,30 @@
+name: reusable Deno build
+
+on: 
+  workflow_call:
+    inputs:
+      config:
+        required: false
+        type: string
+    # secrets:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, macos-11, windows-2019]
+    steps:
+      - name: configure line-endings for Windows builds
+        if: ${{ matrix.os == 'windows-2019' }}
+        run: |
+          git config --system core.autocrlf false
+          git config --system core.eol lf
+      - uses: actions/checkout@v2
+      - uses: denoland/setup-deno@v1.0.0
+        with:
+          deno-version: v1.x
+      - name: check format
+        run: deno fmt --check --config deno.json
+      - name: lint
+        run: deno lint --config deno.json
