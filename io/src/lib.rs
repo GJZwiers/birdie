@@ -10,10 +10,11 @@ fn my_init_function() {
     panic::set_hook(Box::new(console_error_panic_hook::hook));
 }
 
+/// Read a file in FASTA format to stdout. Note: not supported on Windows
 #[wasm_bindgen(method)]
 pub fn read_fasta_file(filename: &str) {
     my_init_function();
-    let mut reader = Reader::from_path(filename).unwrap(); //fasta::Reader::from_file(filename).unwrap();
+    let mut reader = Reader::from_path(filename).unwrap();
 
     let mut stdout = io::stdout();
     

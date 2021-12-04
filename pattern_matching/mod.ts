@@ -1,7 +1,7 @@
 export {
-  default as initWasm,
-  bom,
   bndm,
+  bom,
+  default as initWasm,
   horspool,
   kmp,
   shift_and as shiftAnd,
