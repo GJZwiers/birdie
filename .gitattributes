@@ -1,0 +1,5 @@
+distance/pkg/*.js linguist-vendored
+dna/pkg/*.js linguist-vendored
+io/pkg/*.js linguist-vendored
+pattern_matching/pkg/*.js linguist-vendored
+sequence/pkg/*.js linguist-vendored
