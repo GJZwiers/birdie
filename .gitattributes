@@ -1,0 +1,5 @@
+distance/pkg/* linguist-vendored
+dna/pkg/* linguist-vendored
+io/pkg/* linguist-vendored
+pattern_matching/pkg/* linguist-vendored
+sequence/pkg/* linguist-vendored
