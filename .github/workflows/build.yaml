@@ -19,10 +19,10 @@ jobs:
         with:
           deno-version: v1.x
       - name: check format
-        run: deno fmt --check --config deno.json
+        run: deno fmt --check
       - name: lint
-        run: deno lint --config deno.json
+        run: deno lint
       - name: unit tests
         run: deno test --allow-read --coverage=cov
-      - name: show coverage
-        run: deno coverage cov
+      - name: benchmarks
+        run: deno bench --unstable --allow-read
