@@ -2,24 +2,24 @@
   "fmt": {
     "files": {
       "exclude": [
-        "./target",
-        "./dna/",
-        "./io",
-        "./distance/",
-        "./sequence/",
-        "./pattern_matching/"
+        "./target/",
+        "./dna/pkg/",
+        "./io/pkg/",
+        "./distance/pkg/",
+        "./sequence/pkg/",
+        "./pattern_matching/pkg/"
       ]
     }
   },
   "lint": {
     "files": {
       "exclude": [
-        "./target",
-        "./dna/",
-        "./io",
-        "./distance/",
-        "./sequence/",
-        "./pattern_matching/"
+        "./target/",
+        "./dna/pkg/",
+        "./io/pkg/",
+        "./distance/pkg/",
+        "./sequence/pkg/",
+        "./pattern_matching/pkg/"
       ]
     }
   }
