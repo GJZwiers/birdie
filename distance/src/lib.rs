@@ -11,8 +11,7 @@ use wasm_bindgen::prelude::wasm_bindgen;
 extern crate console_error_panic_hook;
 use std::panic;
 
-// For printing Rust errors in the JS context
-fn my_init_function() {
+fn print_rust_err_in_js_console() {
     panic::set_hook(Box::new(console_error_panic_hook::hook));
 }
 
@@ -32,20 +31,33 @@ pub fn levenshtein(a: &str, b: &str) -> u32 {
     distance(a.as_bytes(), b.as_bytes())
 }
 
+/// Calculates the Levenshtein distance between `a` and `b` using
+/// Myers' Algorithm. Maximum length of a/b is 64 characters or 128 when `is_u128` is true.
 #[wasm_bindgen(method)]
-pub fn myers_distance(a: &str, b: &str) -> usize {
-    // myers::long::Myers
-    let myers = myers::long::Myers::<u128>::new(a.as_bytes());
+pub fn myers(a: &str, b: &str, is_u128: bool) -> u8 {
+    if is_u128 {
+        let myers = myers::Myers::<u128>::new(a.as_bytes());
+        return myers.distance(b.as_bytes());
+    }
+    let myers = myers::Myers::<u64>::new(a.as_bytes());
     myers.distance(b.as_bytes())
 }
 
 /// Calculates the Levenshtein distance between `a` and `b` using
-/// Myers' Algorithm.
-///
+/// Myers' Algorithm. Accepts strings > 128 characters.
+#[wasm_bindgen(method)]
+pub fn myers_long(a: &str, b: &str, is_u128: bool) -> usize {
+    if is_u128 {
+        let myers = myers::long::Myers::<u128>::new(a.as_bytes());
+        return myers.distance(b.as_bytes());
+    }
+    let myers = myers::long::Myers::<u64>::new(a.as_bytes());
+    myers.distance(b.as_bytes())
+}
+
 /// Credits for the original JS implementation go to the `fastest-levenshtein` 
 /// contributors. See https://github.com/ka-weihe/fastest-levenshtein
-#[wasm_bindgen(method)]
-pub fn myers(mut a: JsString, mut b: JsString) -> u32 {
+fn _myers(mut a: JsString, mut b: JsString) -> u32 {
     if a.length() < b.length() {
         let tmp = b;
         b = a;
@@ -60,8 +72,7 @@ pub fn myers(mut a: JsString, mut b: JsString) -> u32 {
     return myers_x(&a, &b);
 }
 
-#[wasm_bindgen(method)]
-pub fn myers_32(a: &JsString, b: &JsString) -> u32 {
+fn myers_32(a: &JsString, b: &JsString) -> u32 {
     let peq = Uint32Array::new(&ArrayBuffer::new(0x10000));
     let n = a.length();
     let m = b.length();
@@ -103,8 +114,7 @@ pub fn myers_32(a: &JsString, b: &JsString) -> u32 {
 }
 
 // Warning: may contain scary code.
-#[wasm_bindgen(method)]
-pub fn myers_x(b: &JsString, a: &JsString) -> u32 {
+fn myers_x(b: &JsString, a: &JsString) -> u32 {
     let peq = Uint32Array::new(&ArrayBuffer::new(0x10000));
     let n = a.length();
     let m = b.length();
