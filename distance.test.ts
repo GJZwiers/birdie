@@ -9,9 +9,9 @@ Deno.test("edit distance should meet expectation", () => {
   assertEquals(hammingDist, 1);
 });
 
-Deno.test("edit distance results should be equal between Myers Algorithm and Wagner-Fischer algorithm", () => {
-  const myersDistance = distance.myers("kitten", "sitting");
+Deno.test("edit distance results should be equal between Myers and Myers long", () => {
+  const myersDistance = distance.myers("kitten", "sitting", false);
 
-  const wfDistance = distance.levenshtein("kitten", "sitting");
+  const wfDistance = distance.myers_long("kitten", "sitting", false);
   assertEquals(myersDistance, wfDistance);
 });
