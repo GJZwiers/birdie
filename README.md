@@ -1,7 +1,7 @@
 # Birdie
 
 <p align="center">
-<img src="./docs/birdie.png" width="350">
+<img src="./docs/birdie-min.png" width="350">
 </p>
 
 [![build](https://github.com/GJZwiers/birdie/actions/workflows/build.yaml/badge.svg)](https://github.com/GJZwiers/birdie/actions/workflows/build.yaml)
