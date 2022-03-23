@@ -24,15 +24,15 @@ function transcribe(str: string): string {
 const bases = makeRandomDNAString(10000);
 
 Deno.bench({
-  name: "transcribe 10k DNA string WebAssembly",
+  name: "transcribe 10k DNA string JavaScript",
   fn() {
-    transcribeWASM(bases);
+    transcribe(bases);
   },
 });
 
 Deno.bench({
-  name: "transcribe 10k DNA string JavaScript",
+  name: "transcribe 10k DNA string WebAssembly",
   fn() {
-    transcribe(bases);
+    transcribeWASM(bases);
   },
 });
