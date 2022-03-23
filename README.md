@@ -29,42 +29,31 @@ await pm.initWasm();
 
 As of right now, WebAssembly files are not locally cached along with JS/TS files
 in Deno, so you must pass `--allow-net=deno.land` in order to successfully run
-`birdie`, because the WebAssembly needs to be fetched from `deno.land/x`.
+`birdie`.
 
 ## Features
 
 ### String Edit Distance
 
-Import and initialize the WebAssembly module:
-
 ```ts
 import * as distance from "https://deno.land/x/birdie/distance/mod.ts";
 
 await distance.initWasm();
-```
 
-- Hamming Distance
-
-```ts
 const x = "GTCTGCATGCG";
 const y = "TTTAGCTAGCG";
 
+// Hamming distance
 const hammingDistance = distance.hamming(x, y);
 console.log(hammingDistance); // 5n (BigInt)
-```
 
-- Levenshtein distance (Wagner-Fischer Algorithm)
+// Levenshtein distance (Wagner-Fischer Algorithm)
+const levenshteinDistance = distance.levenshtein(x, y);
+console.log(levenshteinDistance);
 
-```ts
-const levenshteinDistance = distance.levenshtein("kitten", "sitting");
-console.log(levenshteinDistance); // 3
-```
-
-- Levenshtein distance (Myers' Algorithm)
-
-```ts
-const myersDistance = distance.myers("kitten", "sitting");
-console.log(myersDistance); // 3
+// Myers' Algorithm
+const myersDistance = distance.myers(x, y);
+console.log(myersDistance);
 ```
 
 ### Sequence Analysis
@@ -75,11 +64,9 @@ import * as sequence from "https://deno.land/x/birdie/sequence/mod.ts";
 await sequence.initWasm();
 
 const gcRatio = sequence.gcContent("GATATACA");
-
 console.log(gcRatio); // 0.25
 
 const gc3Ratio = sequence.gc3Content("GATATACA");
-
 console.log(gc3Ratio); // 0.67
 ```
 
@@ -88,15 +75,15 @@ console.log(gc3Ratio); // 0.67
 - shift_and
 
 ```ts
-import * as patternMatching from "https://deno.land/x/birdie/pattern_matching/mod.ts";
+import * as pm from "https://deno.land/x/birdie/pattern_matching/mod.ts";
 
-await patternMatching.initWasm();
+await pm.initWasm();
 
 const pattern = "AAAA";
 const text = "ACGGCTAGAAAAGGCTAG";
 
-const patternStartingPosition = patternMatching.shiftAnd(pattern, text);
-console.log(patternStartingPosition); // 8
+const startPos = pm.shiftAnd(pattern, text);
+console.log(startPos); // 8
 ```
 
 ## Contributing

@@ -19,7 +19,8 @@ bioinformatics applications.
 
    - [distance](#distance)
    - [pattern_matching](#pattern_matching)
-   - [sequence](sequence)
+   - [sequence](#sequence)
+4. [Benchmarks](benchmarks.md)
 
 ## Installation
 
