@@ -23,7 +23,7 @@ struct Fasta {
 }
 
 /// Reads a file in FASTA format. Returns an array of objects containing IDs, sequences and descriptions.
-#[wasm_bindgen(typescript_type = "Array<string>")]
+#[wasm_bindgen(typescript_type = "Array<Fasta>")]
 pub fn read_fasta_file(file: &[u8]) -> Array {
     my_init_function();
     let reader = fasta::Reader::new(file);
