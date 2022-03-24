@@ -16,8 +16,8 @@ bioinformatics applications.
 1. [Installation](#installation)
 2. [Initializing the WebAssembly](#initializing-the-webassembly)
 3. [Modules](#modules)
-
    - [distance](#distance)
+   - [io](#io)
    - [pattern_matching](#pattern_matching)
    - [sequence](#sequence)
 4. [Benchmarks](benchmarks.md)
@@ -82,9 +82,9 @@ which requires you to allow net access to e.g. `deno.land`:
 deno run --allow-net=deno.land mod.ts
 ```
 
-If you want to use multiple of Birdie's modules in a single file, you just have
-to create an alias for at least one of the `import`ed initialization functions,
-though for clarity it is recommended to alias all in these kinds of scenarios:
+If you want to use multiple `birdie` modules in a single file, you just have to
+create an alias for at least one of the `import`ed init functions, though for
+clarity it is recommended to alias all in these kinds of scenarios:
 
 ```typescript
 import {
@@ -97,7 +97,6 @@ import {
 } from "https://deno.land/x/birdie/distance/mod.ts";
 
 await initPatternMatching();
-
 await initDistance();
 ```
 
@@ -111,6 +110,19 @@ Calculate Levenshtein edit distance using one of several algorithms, including
 Wagner-Fischer and Myers' Algorithm.
 
 TBD
+
+### io
+
+Read a FASTA file from stdin:
+
+```ts
+import * as io from "./io/mod.ts";
+import { readAll } from "https://deno.land/std/streams/conversion.ts";
+
+await io.initWasm();
+
+io.readFastaFile(await readAll(Deno.stdin));
+```
 
 ### pattern_matching
 
