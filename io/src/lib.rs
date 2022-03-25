@@ -1,9 +1,9 @@
-use wasm_bindgen::{prelude::wasm_bindgen, JsValue};
 use bio::io::fasta;
-// use web_sys::console;
 use js_sys::Array;
-use std::str;
 use serde::{Serialize, Deserialize};
+use std::str;
+use wasm_bindgen::{prelude::wasm_bindgen, JsValue};
+// use web_sys::console;
 
 extern crate console_error_panic_hook;
 use std::panic;
@@ -15,7 +15,7 @@ fn my_init_function() {
 
 #[wasm_bindgen]
 #[derive(Serialize, Deserialize)]
-struct Fasta {
+struct FastaData {
     id: String,
     seq: String,
     len: usize,
@@ -28,10 +28,7 @@ pub fn read_fasta_file(file: &[u8]) -> Array {
     my_init_function();
     let reader = fasta::Reader::new(file);
 
-    let mut nb_reads = 0;
-    let mut nb_bases = 0;
-
-    let mut fastas = Vec::new();
+    let mut records = Vec::new();
     for result in reader.records() {
         let record = result.expect("Error during fasta record parsing");
 
@@ -45,20 +42,17 @@ pub fn read_fasta_file(file: &[u8]) -> Array {
             Some(s) => s,
             None => "none"
         };
-        
-        nb_reads += 1;
-        nb_bases += record.seq().len();
 
-        let fasta = Fasta {
+        let data = FastaData {
             id: record.id().into(),
             seq: b.into(),
             len: record.seq().len().into(),
             desc: d.into(),
         };
-        fastas.push(fasta);
+        records.push(data);
     }
 
-    fastas.into_iter().map({ |f|
+    records.into_iter().map({ |f|
         JsValue::from_serde(&f).unwrap()
     }).collect::<Array>()
 }

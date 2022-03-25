@@ -124,6 +124,22 @@ await io.initWasm();
 io.readFastaFile(await readAll(Deno.stdin));
 ```
 
+The `readFastaFile` function returns an array of objects with the following
+data:
+
+```ts
+{
+  id:
+  string;
+  seq:
+  string;
+  len:
+  number;
+  desc:
+  string;
+}
+```
+
 ### pattern_matching
 
 TBD
