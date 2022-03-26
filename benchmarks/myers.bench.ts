@@ -12,6 +12,7 @@ const b = makeRandomDNAString(1024);
 
 Deno.bench({
   name: "Myers 32bp string JavaScript",
+  warmup: 2000,
   fn: () => {
     myersJS(ax, bx);
   },
@@ -19,6 +20,7 @@ Deno.bench({
 
 Deno.bench({
   name: "Myers 32bp string WebAssembly",
+  warmup: 2000,
   fn: () => {
     myers(ax, bx, false);
   },
