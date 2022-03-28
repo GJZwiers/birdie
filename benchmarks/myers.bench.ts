@@ -10,15 +10,16 @@ const bx = makeRandomDNAString(32);
 const a = makeRandomDNAString(1024);
 const b = makeRandomDNAString(1024);
 
-Deno.bench({
-  name: "test bench JavaScript",
-  fn: () => {
-    myersJS(ax, bx);
-  },
-});
+// Deno.bench({
+//   name: "test bench JavaScript",
+//   fn: () => {
+//     myersJS(ax, bx);
+//   },
+// });
 
 Deno.bench({
   name: "Myers 32bp string JavaScript",
+  warmup: 9000,
   fn: () => {
     myersJS(ax, bx);
   },
