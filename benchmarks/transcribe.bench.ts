@@ -25,6 +25,7 @@ const bases = makeRandomDNAString(10000);
 
 Deno.bench({
   name: "transcribe 10k DNA string JavaScript",
+  group: "transcribe",
   fn() {
     transcribe(bases);
   },
@@ -32,6 +33,8 @@ Deno.bench({
 
 Deno.bench({
   name: "transcribe 10k DNA string WebAssembly",
+  baseline: true,
+  group: "transcribe",
   fn() {
     transcribeWASM(bases);
   },
